@@ -1,16 +1,31 @@
 # pic_19
+Portal Informasi Covid-19
 
-A new Flutter project.
+Anggota :
+Anggota 1 : Louis Margatan    	- C14190196
+Anggota 2 : Iverson Krysthio		- C14190189
+Anggota 3 : George Kim Anderson    - C14190201
 
-## Getting Started
+Judul : 
+Portal Informasi COVID19 (judul sementara)
 
-This project is a starting point for a Flutter application.
+Pembagian Halaman : 
+Louis	 : home, rss feed, splash screen, setting.
+Iverson : search hospitals and show hospital details.
+George : home, rss feed, splash screen, setting.
 
-A few resources to get you started if this is your first Flutter project:
+List link API yang digunakan :
+covid19.mathdro.id/api (status covid di seluruh dunia contoh: alive, dead, recovered)
+Covid19-api.iversonkrysthio.repl.co (jumlah ketersediaan ruang ICU/tempat tidur pasien covid)
+covid19.go.id/dokumentasi-api (RSS Feed - berita seputar kesehatan dan lain lain)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Kebutuhan Widget Per Halaman (masih belum fix) :
+Splash screen : elevatedbutton.
+Home : DropDownButton, listview builder, AlertDialog.
+RSS Feed : card, listview builder, 
+Settings : textfield,  elevatedButton.
+Search hospitals : DropDownButton, listview builder, badges.
+Show hospital details : listview builder.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Widget umum yang akan digunakan :
+List View builder, Container, row, column, Expanded, Dropdown, Elevated Button, icon, progress indicator, bottom navigation, skeleton loading / shimmer loading, badges, dan widget pendukung lainnya.
