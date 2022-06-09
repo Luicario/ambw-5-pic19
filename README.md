@@ -1,31 +1,85 @@
-# pic_19
-Portal Informasi Covid-19
 
-Anggota :
-Anggota 1 : Louis Margatan    	- C14190196
-Anggota 2 : Iverson Krysthio		- C14190189
-Anggota 3 : George Kim Anderson    - C14190201
+# PIC - Portal Informasi Covid 19
 
-Judul : 
-Portal Informasi COVID19 (judul sementara)
+Portal Informasi Covid, yang dimana aplikasi menampilkan :
+- Berita seputar kesehatan/covid19
+- Status covid di seluruh dunia
+- Fasilitas Vaksin di Indonesia
+- Jumlah ketersediaan ruang ICU/tempat tidur pasien covid di seluruh rumah sakit di Indonesia
 
-Pembagian Halaman : 
-Louis	 : home, rss feed, splash screen, setting.
-Iverson : search hospitals and show hospital details.
-George : home, rss feed, splash screen, setting.
 
-List link API yang digunakan :
-covid19.mathdro.id/api (status covid di seluruh dunia contoh: alive, dead, recovered)
-Covid19-api.iversonkrysthio.repl.co (jumlah ketersediaan ruang ICU/tempat tidur pasien covid)
-covid19.go.id/dokumentasi-api (RSS Feed - berita seputar kesehatan dan lain lain)
 
-Kebutuhan Widget Per Halaman (masih belum fix) :
-Splash screen : elevatedbutton.
-Home : DropDownButton, listview builder, AlertDialog.
-RSS Feed : card, listview builder, 
-Settings : textfield,  elevatedButton.
-Search hospitals : DropDownButton, listview builder, badges.
-Show hospital details : listview builder.
+## Features
 
-Widget umum yang akan digunakan :
-List View builder, Container, row, column, Expanded, Dropdown, Elevated Button, icon, progress indicator, bottom navigation, skeleton loading / shimmer loading, badges, dan widget pendukung lainnya.
+- Data Total deaths, Recovered, Confirmed case.
+- Data Faskes - kamar pasien (khusus pasien covid19).
+- Data Faskes vaksinasi.
+- RSS Feed News.
+- Show popup warning (with condition) case per day.
+
+
+
+
+## Our Team
+Kelompok 5 - AMBW
+- [Louis Margatan](https://github.com/Luicario)
+- [Iverson Krysthio](https://github.com/iberso)
+- [George Kim](https://github.com/ge0rgekim)
+
+## API Reference
+- [covid19.mathdro.id/api](https://covid19.mathdro.id/api) 
+- [covid19.iversonkrysthio.repl.co](https://covid19.iversonkrysthio.repl.co) (Temporary deployed)
+- [covid19.go.id/dokumentasi-api](https://covid19.go.id/dokumentasi-api )
+- [api.vaksinasi.id](https://api.vaksinasi.id)
+
+
+
+## Widgets
+Common widgets used by each page
+- ListView
+- Container
+- Row and Column
+- Expanded
+- Dropdown
+- Elevated Button
+- Icon
+- Progress Indicator
+- Bottom navigation
+- Skeleton loading
+- Shimmer loading
+- Badges
+- widget pendukung lainnya.
+
+**Additional Widgets Per Pages (will get updated)**
+
+- Splash Screen :
+- Home Screen   :
+- RSS Feed      :
+- Search Hospitals:
+- Hospital Details :
+- Search Vaccination
+- Settings :
+
+## Pembagian Kerja Per Halaman
+- [Louis Margatan](https://github.com/Luicario) : settings, search, dan lokasi vaksinasi.
+- [Iverson Krysthio](https://github.com/iberso) : search hospitals dan hospital detail.
+- [George Kim](https://github.com/ge0rgekim) : splash screen, home screen, and rss feed.
+## Halaman Aplikasi
+
+**Pages List**
+No | Halaman | PIC | Status
+| :--- | :--- | :---: | :--:
+1  | Splash Screen | George | 💻
+2  | Home Screen | George | 🚧
+3 | Rss Feed | George | 🚧
+4 | Search Hospitals | Iverson | 💻
+5 | Hospital Details | Iverson | 🚧
+6 | Search Vaccination | Louis | 🚧
+7 | Settings | Louis | 🚧
+
+**Status Icon**
+No | Status | Icon |
+| :---: | :--- | :---: |
+1 | Done | ✅
+2 | On-Going | 💻
+3 | Not yet started | 🚧
