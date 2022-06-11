@@ -72,8 +72,8 @@ No | Halaman | PIC | Status
 1  | Splash Screen | George | 💻
 2  | Home Screen | George | 🚧
 3 | Rss Feed | George | 🚧
-4 | Search Hospitals | Iverson | 💻
-5 | Hospital Details | Iverson | 🚧
+4 | Search Hospitals | Iverson | ✅
+5 | Hospital Details | Iverson | 💻
 6 | Search Vaccination | Louis | 🚧
 7 | Settings | Louis | 🚧
 
