@@ -1,115 +1,783 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:money_formatter/money_formatter.dart';
+import 'package:pic_19/apiServices.dart';
+import 'package:pic_19/customColors.dart';
+import 'package:pic_19/customWidgets.dart';
+import 'package:pic_19/dataClass.dart';
+import 'package:pic_19/pages/rssFeedsDetails.dart';
+import 'package:pic_19/pages/settings.dart';
+import 'package:pic_19/pages/splashScreen.dart';
+import 'package:pic_19/pages/vaccination.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
-  runApp(const MyApp());
+  // runApp(const mainApp());
+  runApp(const splashScreen());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class mainApp extends StatefulWidget {
+  const mainApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
+  @override
+  State<mainApp> createState() => _mainState();
+}
+
+class _mainState extends State<mainApp> {
+  late cCovidSummaryProvinsi covidSummary = cCovidSummaryProvinsi(
+      cNamaProvinsi: "INDONESIA",
+      cConfirmed: 0,
+      cRecovered: 0,
+      cDeaths: 0,
+      cLastUpdate: "0000-00-00",
+      cDailyCase: 0);
+  late Future<List<cCovidSummaryProvinsi>> listCovidSummaryProvinsi;
+  late cCovidSummaryProvinsi covidSummaryIndonesia = cCovidSummaryProvinsi(
+      cNamaProvinsi: "INDONESIA",
+      cConfirmed: 0,
+      cRecovered: 0,
+      cDeaths: 0,
+      cLastUpdate: "0000-00-00",
+      cDailyCase: 0);
+
+  customWidgets customWidget = customWidgets();
+  ApiService apiservice = ApiService();
+  List<String> month = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ];
+
+  var isLoading = true,
+      isFound = true,
+      isFirstLoading = true,
+      valueNegara = "INDONESIA";
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    apiservice.getCovidSummaryIndonesia().then((value) => {
+          setState(() {
+            covidSummary = value;
+            isLoading = false;
+            isFirstLoading = false;
+            covidSummaryIndonesia = value;
+          }),
+          checkDailyCaseLimit(value),
+        });
+
+    listCovidSummaryProvinsi = apiservice.getCovidSummaryProvinsi();
+    listCovidSummaryProvinsi.then((value) => {
+          value.sort((a, b) => a.cNamaProvinsi.compareTo(b.cNamaProvinsi)),
+          value.insert(0, covidSummaryIndonesia)
+        });
+  }
+
+  void checkDailyCaseLimit(value) async {
+    final prefs = await SharedPreferences.getInstance();
+    int dailyCaselimit = (prefs.getInt('dailyCaseLimit') ?? 0) * 1000;
+    if (value.cDailyCase > dailyCaselimit) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text("Warning",
+              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center),
+          content: Wrap(
+            children: [
+              Column(
+                children: [
+                  Image.asset(
+                    'assets/images/dailycasewarning.png',
+                    width: MediaQuery.of(context).size.width / 2,
+                  ),
+                  Text(
+                    "Daily Case in Indonesia Reach ${value.cDailyCase} Case Perday",
+                    textAlign: TextAlign.center,
+                  )
+                ],
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'PIC-19',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+      debugShowCheckedModeBanner: false,
+      theme: new ThemeData(
+        scaffoldBackgroundColor: primaryColor,
+        textTheme: GoogleFonts.poppinsTextTheme(
+          Theme.of(context).textTheme,
+        ),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: primaryColor,
+          toolbarHeight: 90,
+          leadingWidth: 65,
+          titleSpacing: 0,
+          leading: IconButton(
+              onPressed: () async {
+                final url =
+                    Uri.parse("https://github.com/Luicario/ambw-5-pic19");
+                await launchUrl(url);
+              },
+              icon: Image.asset('assets/images/logo.png')),
+          actions: [
+            IconButton(
+                onPressed: () => {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return settings();
+                          },
+                        ),
+                      )
+                    },
+                icon: Icon(
+                  Icons.settings,
+                  size: 30,
+                ))
+          ],
+          title: Text("Home",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25)),
+          centerTitle: true,
+          elevation: 0,
+        ),
+        body: Scrollbar(
+          trackVisibility: true,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 20,
+                  ),
+                  margin: EdgeInsets.only(top: 0),
+                  decoration: new BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(color: Colors.white, width: 2),
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(25),
+                        topRight: Radius.circular(25)),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 20),
+                      Container(
+                        child: FutureBuilder<List<cCovidSummaryProvinsi>>(
+                          future: listCovidSummaryProvinsi,
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              List<cCovidSummaryProvinsi> dataCovidSummary =
+                                  snapshot.data!;
+                              return Container(
+                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                decoration: new BoxDecoration(
+                                  border:
+                                      Border.all(color: primaryColor, width: 2),
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10),
+                                  ),
+                                ),
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.location_on_outlined,
+                                      size: 25,
+                                      color: primaryColor,
+                                    ),
+                                    SizedBox(width: 5),
+                                    Expanded(
+                                      child: DropdownButtonHideUnderline(
+                                        child: DropdownButton2(
+                                          isExpanded: true,
+                                          itemHeight: 35,
+                                          dropdownMaxHeight: 250,
+                                          hint: Text(valueNegara),
+                                          iconSize: 35,
+                                          items: dataCovidSummary.map((item) {
+                                            return DropdownMenuItem(
+                                              child: Text(item.cNamaProvinsi),
+                                              value:
+                                                  item.cNamaProvinsi.toString(),
+                                            );
+                                          }).toList(),
+                                          onChanged: (value) {
+                                            final index = dataCovidSummary
+                                                .indexWhere((element) =>
+                                                    element.cNamaProvinsi ==
+                                                    value.toString());
+                                            setState(
+                                              () {
+                                                isLoading = true;
+                                                if (index == 0) {
+                                                  covidSummary =
+                                                      covidSummaryIndonesia;
+                                                } else {
+                                                  covidSummary =
+                                                      dataCovidSummary[index];
+                                                }
+                                                valueNegara =
+                                                    dataCovidSummary[index]
+                                                        .cNamaProvinsi;
+                                              },
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            } else if (snapshot.hasError) {
+                              return Text("${snapshot.error}");
+                            }
+                            return Column(
+                              children: [customWidget.shimmerLoading(40)],
+                            );
+                          },
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Latest Update",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                ),
+                              ),
+                              Text(
+                                covidSummary.cLastUpdate
+                                        .substring(0, 10)
+                                        .split('-')[2]
+                                        .toString() +
+                                    "-" +
+                                    month[int.parse(covidSummary.cLastUpdate
+                                            .toString()
+                                            .split('-')[1])]
+                                        .toString() +
+                                    "-" +
+                                    covidSummary.cLastUpdate
+                                        .toString()
+                                        .substring(0, 10)
+                                        .split('-')[0]
+                                        .toString(),
+                                style: TextStyle(fontSize: 15),
+                              )
+                            ],
+                          ),
+                          SizedBox(height: 10),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Expanded(
+                                child: containerSummaryCovid(
+                                    "Confirmed",
+                                    covidSummary.cConfirmed,
+                                    Colors.red.shade100,
+                                    Colors.red.shade600,
+                                    "https://cdn-icons-png.flaticon.com/512/2913/2913604.png"),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Expanded(
+                                child: containerSummaryCovid(
+                                    "Recovered",
+                                    covidSummary.cRecovered,
+                                    Colors.green.shade100,
+                                    Colors.green.shade600,
+                                    "https://cdn-icons-png.flaticon.com/512/4015/4015528.png"),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Expanded(
+                                child: containerSummaryCovid(
+                                    "Deaths",
+                                    covidSummary.cDeaths,
+                                    Colors.grey.shade300,
+                                    Colors.grey.shade700,
+                                    // "https://cdn-icons-png.flaticon.com/512/2552/2552797.png"
+                                    "https://cdn-icons-png.flaticon.com/512/983/983061.png"),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 20),
+                      Text(
+                        "RSS Feeds",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 20),
+                      ),
+                      SizedBox(height: 10),
+                      Container(
+                        child: cardListViewRSSFeeds(),
+                        height: 160,
+                      ),
+                      SizedBox(height: 20),
+                      Text(
+                        "Information Services",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 20),
+                      ),
+                      SizedBox(height: 10),
+                      cardListViewInformationService(),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
-}
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+  Widget shimmerContainerSummaryCovid() {
+    return Column(
+      children: [
+        Row(
+          children: [
+            Expanded(
+              child: customWidget.shimmerLoading(40),
             ),
           ],
         ),
+        SizedBox(
+          height: 20,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: customWidget.shimmerLoading(110),
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Expanded(
+              child: customWidget.shimmerLoading(110),
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Expanded(
+              child: customWidget.shimmerLoading(110),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget cardListViewRSSFeeds() {
+    List<cRssFeedsDataView> rssFeedsDataView = [
+      cRssFeedsDataView(
+          cName: "News", cImage: "assets/images/news.png", cEndPoint: "berita"),
+      cRssFeedsDataView(
+          cName: "Public",
+          cImage: "assets/images/public.png",
+          cEndPoint: "masyarakat-umum"),
+      cRssFeedsDataView(
+          cName: "Guide",
+          cImage: "assets/images/guide.png",
+          cEndPoint: "panduan"),
+      cRssFeedsDataView(
+          cName: "Travelling",
+          cImage: "assets/images/travelling.png",
+          cEndPoint: "melakukan-perjalanan"),
+      cRssFeedsDataView(
+          cName: "Regulation",
+          cImage: "assets/images/regulation.png",
+          cEndPoint: "regulasi"),
+      cRssFeedsDataView(
+          cName: "Business",
+          cImage: "assets/images/business.png",
+          cEndPoint: "pengusaha-dan-bisnis")
+    ];
+
+    return Scrollbar(
+      trackVisibility: true,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        // controller: _scrollController,
+        itemCount: rssFeedsDataView.length,
+        itemBuilder: (BuildContext context, int index) {
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return rssFeedsDetails(rssFeeds: rssFeedsDataView[index]);
+                  },
+                ),
+              );
+            },
+            child: Row(
+              children: [
+                Column(
+                  children: [
+                    Container(
+                      width: 115,
+                      height: 120,
+                      decoration: new BoxDecoration(
+                        color: lightBlueColor,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(5),
+                          topRight: Radius.circular(5),
+                        ),
+                        image: DecorationImage(
+                          fit: BoxFit.fill,
+                          image: AssetImage(rssFeedsDataView[index].cImage),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: 115,
+                      padding: EdgeInsets.symmetric(vertical: 5),
+                      decoration: new BoxDecoration(
+                        color: primaryColor,
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(5),
+                          bottomRight: Radius.circular(5),
+                        ),
+                      ),
+                      child: Text(
+                        rssFeedsDataView[index].cName,
+                        style: GoogleFonts.poppins(
+                            fontSize: 17,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                            letterSpacing: 1.0),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(width: 10)
+              ],
+            ),
+          );
+        },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+
+  Widget cardListViewInformationService() {
+    List<cInformations> informationsTextView = [
+      cInformations(
+          cName: "Hospitals",
+          cDesc:
+              "Check the availability of the COVID-19 patient care room in Indonesia",
+          cImage: "assets/images/hospitals.png"),
+      cInformations(
+          cName: "Vaccination",
+          cDesc: "Check vaccination locations for COVID-19 in Indonesia",
+          cImage: "assets/images/vaccination.png")
+    ];
+
+    return Column(
+      children: [
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return vaccination();
+                  // return splashScreen();
+                },
+              ),
+            );
+          },
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Container(
+                    height: 145,
+                    width: 150,
+                    decoration: new BoxDecoration(
+                      color: Colors.grey.shade200,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(5),
+                        bottomLeft: Radius.circular(5),
+                      ),
+                      image: DecorationImage(
+                        fit: BoxFit.fill,
+                        image: AssetImage(informationsTextView[0].cImage),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      height: 145,
+                      padding: EdgeInsets.symmetric(vertical: 5),
+                      decoration: new BoxDecoration(
+                        color: lightBlueColor,
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(10),
+                          bottomRight: Radius.circular(10),
+                        ),
+                      ),
+                      child: Padding(
+                        padding:
+                            const EdgeInsets.only(left: 10, top: 5, right: 15),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              informationsTextView[0].cName,
+                              style: GoogleFonts.poppins(
+                                fontSize: 17,
+                                color: primaryColor,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            SizedBox(height: 2),
+                            Text(informationsTextView[0].cDesc)
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 10),
+            ],
+          ),
+        ),
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return vaccination();
+                },
+              ),
+            );
+          },
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Container(
+                    height: 145,
+                    width: 150,
+                    decoration: new BoxDecoration(
+                      color: Colors.grey.shade200,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(5),
+                        bottomLeft: Radius.circular(5),
+                      ),
+                      image: DecorationImage(
+                        fit: BoxFit.fill,
+                        image: AssetImage(informationsTextView[1].cImage),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      height: 145,
+                      padding: EdgeInsets.symmetric(vertical: 5),
+                      decoration: new BoxDecoration(
+                        color: lightBlueColor,
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(10),
+                          bottomRight: Radius.circular(10),
+                        ),
+                      ),
+                      child: Padding(
+                        padding:
+                            const EdgeInsets.only(left: 10, top: 5, right: 15),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              informationsTextView[1].cName,
+                              style: GoogleFonts.poppins(
+                                fontSize: 17,
+                                color: primaryColor,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            SizedBox(height: 2),
+                            Text(informationsTextView[1].cDesc)
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 10),
+            ],
+          ),
+        )
+      ],
+    );
+    // return ListView.builder(
+    //   // controller: _scrollController,
+    //   shrinkWrap: true,
+    //   itemCount: informationsTextView.length,
+    //   primary: false,
+    //   itemBuilder: (BuildContext context, int index) {
+    //     return GestureDetector(
+    //       onTap: () {
+    //         Navigator.push(
+    //           context,
+    //           MaterialPageRoute(
+    //             builder: (context) {
+    //               switch (index) {
+    //                 case 1:
+    //                   {
+    //                     return vaccinationScreen();
+    //                   }
+    //                   break;
+    //                 default:
+    //                   {
+    //                     return vaccinationScreen();
+    //                   }
+    //               }
+    //             },
+    //           ),
+    //         );
+    //       },
+    //       child: Column(
+    //         children: [
+    //           Row(
+    //             children: [
+    //               Container(
+    //                 height: 145,
+    //                 width: 150,
+    //                 decoration: new BoxDecoration(
+    //                   color: Colors.grey.shade200,
+    //                   borderRadius: BorderRadius.only(
+    //                     topLeft: Radius.circular(5),
+    //                     bottomLeft: Radius.circular(5),
+    //                   ),
+    //                   image: DecorationImage(
+    //                     fit: BoxFit.fill,
+    //                     image: AssetImage(informationsTextView[index].cImage),
+    //                   ),
+    //                 ),
+    //               ),
+    //               Expanded(
+    //                 child: Container(
+    //                   height: 145,
+    //                   padding: EdgeInsets.symmetric(vertical: 5),
+    //                   decoration: new BoxDecoration(
+    //                     color: lightBlueColor,
+    //                     borderRadius: BorderRadius.only(
+    //                       topRight: Radius.circular(10),
+    //                       bottomRight: Radius.circular(10),
+    //                     ),
+    //                   ),
+    //                   child: Padding(
+    //                     padding:
+    //                         const EdgeInsets.only(left: 10, top: 5, right: 15),
+    //                     child: Column(
+    //                       crossAxisAlignment: CrossAxisAlignment.start,
+    //                       children: [
+    //                         Text(
+    //                           informationsTextView[index].cName,
+    //                           style: TextStyle(
+    //                             fontSize: 15,
+    //                             color: primaryColor,
+    //                             fontWeight: FontWeight.bold,
+    //                           ),
+    //                         ),
+    //                         SizedBox(height: 2),
+    //                         Text(informationsTextView[index].cDesc)
+    //                       ],
+    //                     ),
+    //                   ),
+    //                 ),
+    //               ),
+    //             ],
+    //           ),
+    //           SizedBox(height: 10),
+    //         ],
+    //       ),
+    //     );
+    //   },
+    // );
+  }
+
+  Widget containerSummaryCovid(bottomtext, int data, bgcolor, textcolor,
+      [String imageURL = "https://via.placeholder.com/50"]) {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 18),
+      decoration: new BoxDecoration(
+        color: bgcolor,
+        borderRadius: BorderRadius.all(
+          Radius.circular(5),
+        ),
+      ),
+      child: Column(
+        children: [
+          CachedNetworkImage(
+            imageUrl: imageURL,
+            height: 45,
+            placeholder: (context, url) => CircularProgressIndicator(),
+            errorWidget: (context, url, error) => Icon(Icons.error),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 2),
+            child: Text(
+              MoneyFormatter(amount: data.toDouble())
+                  .output
+                  .withoutFractionDigits
+                  .toString(),
+              style: GoogleFonts.poppins(
+                fontSize: 15,
+                color: textcolor,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ),
+          Text(
+            bottomtext,
+            style: GoogleFonts.poppins(
+              fontSize: 15,
+              color: textcolor,
+              fontWeight: FontWeight.w700,
+            ),
+          )
+        ],
+      ),
     );
   }
 }
