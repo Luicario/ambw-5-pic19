@@ -5,6 +5,7 @@
 <img src="https://user-images.githubusercontent.com/74914280/176128504-aea49e04-3ca2-4652-a0d5-13f8bc4d2c2e.png" width=200>
 </p>
 
+## About
 Portal Informasi Covid, yang dimana aplikasi menampilkan :
 - Berita seputar kesehatan/covid19
 - Status covid di seluruh dunia
