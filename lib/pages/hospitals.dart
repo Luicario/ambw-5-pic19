@@ -1,6 +1,7 @@
 import 'package:badges/badges.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pic_19/apiServices.dart';
 import 'package:pic_19/customColors.dart';
@@ -45,12 +46,10 @@ class _hospitalsState extends State<hospitals> {
           () {
             isLoading = false;
             isFirstLoading = false;
-            print(ListKamar);
           },
         ));
     ListRS = apiservice.getAllRumahSakit("none", "none");
     ListKamar = apiservice.getAllKamar("9201012", "92prop");
-    ListKamar.then((value) => print(value![0].cNama));
     super.initState();
   }
 
@@ -81,12 +80,9 @@ class _hospitalsState extends State<hospitals> {
   }
 
   void scrollToTop() {
-    // Future.delayed(const Duration(milliseconds: 300));
-    // SchedulerBinding.instance?.addPostFrameCallback((_) {
-    //   _scrollController.animateTo(_scrollController.position.minScrollExtent,
-    //       duration: const Duration(milliseconds: 500),
-    //       curve: Curves.fastOutSlowIn);
-    // });
+    _scrollController.animateTo(_scrollController.position.minScrollExtent,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.fastOutSlowIn);
   }
 
   @override
@@ -189,7 +185,6 @@ class _hospitalsState extends State<hospitals> {
                                             () {
                                               isLoading = false;
                                               jumlahRS = value!.length;
-                                              scrollToTop();
                                             },
                                           ),
                                         );
@@ -296,6 +291,13 @@ class _hospitalsState extends State<hospitals> {
               ),
             ],
           ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            (isFound && jumlahRS != 0) ? scrollToTop() : null;
+          },
+          backgroundColor: primaryColor,
+          child: Icon(Icons.keyboard_double_arrow_up_rounded),
         ),
       ),
     );
