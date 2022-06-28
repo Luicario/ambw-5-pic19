@@ -33,9 +33,13 @@ class _hospitalsState extends State<hospitals> {
       isFirstLoading = true;
 
   @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
   void initState() {
-    // TODO: implement initState
-    super.initState();
     ListProvinsi = apiservice.getAllProvinsi();
     ListProvinsi.then((value) => setState(
           () {
@@ -47,6 +51,7 @@ class _hospitalsState extends State<hospitals> {
     ListRS = apiservice.getAllRumahSakit("none", "none");
     ListKamar = apiservice.getAllKamar("9201012", "92prop");
     ListKamar.then((value) => print(value![0].cNama));
+    super.initState();
   }
 
   void dropDown2CallBack(String? value) {
@@ -99,7 +104,8 @@ class _hospitalsState extends State<hospitals> {
           backgroundColor: primaryColor,
           // leading: Icon(Icons.arrow_back),f
           leading: IconButton(
-              onPressed: () => {scrollToTop()}, icon: Icon(Icons.arrow_back)),
+              onPressed: () => {Navigator.of(context).pop()},
+              icon: Icon(Icons.arrow_back)),
           toolbarHeight: 80,
           title: Text("Search Hospital",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25)),
