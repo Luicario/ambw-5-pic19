@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:pic_19/apiServices.dart';
 import 'package:pic_19/customColors.dart';
 import 'package:pic_19/customWidgets.dart';
@@ -47,7 +48,12 @@ class _hospitalDetailsState extends State<hospitalDetails> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: new ThemeData(scaffoldBackgroundColor: primaryColor),
+      theme: new ThemeData(
+        scaffoldBackgroundColor: primaryColor,
+        textTheme: GoogleFonts.poppinsTextTheme(
+          Theme.of(context).textTheme,
+        ),
+      ),
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: primaryColor,
