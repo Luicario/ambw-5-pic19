@@ -7,6 +7,7 @@ import 'package:pic_19/apiServices.dart';
 import 'package:pic_19/customColors.dart';
 import 'package:pic_19/customWidgets.dart';
 import 'package:pic_19/dataClass.dart';
+import 'package:pic_19/pages/hospitals.dart';
 import 'package:pic_19/pages/rssFeedsDetails.dart';
 import 'package:pic_19/pages/settings.dart';
 import 'package:pic_19/pages/splashScreen.dart';
@@ -515,8 +516,7 @@ class _mainState extends State<mainApp> {
               context,
               MaterialPageRoute(
                 builder: (context) {
-                  return vaccination();
-                  // return splashScreen();
+                  return hospitals();
                 },
               ),
             );

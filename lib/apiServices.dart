@@ -95,4 +95,65 @@ class ApiService {
       throw Exception("failed to retrevie data");
     }
   }
+
+  Future<List<cDataProvinsi>> getAllProvinsi() async {
+    final response = await http
+        .get(Uri.parse('https://covid19-api.iversonkrysthio.repl.co/provinsi'));
+    if (response.statusCode == 200) {
+      final jsonRes = json.decode(response.body);
+      List dat = jsonRes['result'];
+      return dat.map((data) => cDataProvinsi.fromJSON(data)).toList();
+    } else {
+      throw Exception("failed to retrevie data");
+    }
+  }
+
+  Future<List<cDataRs>?> getAllRumahSakit(
+      String id_provinsi, String id_kabkota) async {
+    final response;
+    if (id_provinsi == "none" && id_kabkota == "none") {
+      return null;
+    }
+    if (id_kabkota == "none") {
+      response = await http.get(Uri.parse(
+          'https://covid19-api.iversonkrysthio.repl.co/rs/' + id_provinsi));
+    } else {
+      response = await http.get(Uri.parse(
+          'https://covid19-api.iversonkrysthio.repl.co/rs/' +
+              id_provinsi +
+              '/' +
+              id_kabkota));
+    }
+    if (response.statusCode == 200) {
+      final jsonRes = json.decode(response.body);
+      if (jsonRes['count'] != 0) {
+        List data = jsonRes['results'];
+        return data.map((data) => cDataRs.fromJSON(data)).toList();
+      } else {
+        return null;
+      }
+    } else {
+      throw Exception("Failed To Retrevie Data");
+    }
+  }
+
+  Future<List<cDataKamar>?> getAllKamar(
+      String id_rs, String id_provinsi) async {
+    final response = await http.get(Uri.parse(
+        'https://covid19-api.iversonkrysthio.repl.co/detail_kamar/' +
+            id_rs +
+            '/' +
+            id_provinsi));
+    if (response.statusCode == 200) {
+      final jsonRes = json.decode(response.body);
+      if (jsonRes['count'] != 0) {
+        List data = jsonRes['results'];
+        return data.map((data) => cDataKamar.fromJSON(data)).toList();
+      } else {
+        return null;
+      }
+    } else {
+      throw Exception("Failed To Retrevie Data");
+    }
+  }
 }

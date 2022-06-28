@@ -44,6 +44,7 @@ dependencies:
   url_launcher: ^6.1.4
   xml: ^5.3.1
   configurable_expansion_tile_null_safety: ^2.0.2
+  badges: ^2.0.3
 
 dev_dependencies:
   flutter_test:
