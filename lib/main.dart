@@ -7,6 +7,7 @@ import 'package:pic_19/apiServices.dart';
 import 'package:pic_19/customColors.dart';
 import 'package:pic_19/customWidgets.dart';
 import 'package:pic_19/dataClass.dart';
+import 'package:pic_19/pages/hospitals.dart';
 import 'package:pic_19/pages/rssFeedsDetails.dart';
 import 'package:pic_19/pages/settings.dart';
 import 'package:pic_19/pages/splashScreen.dart';
@@ -67,8 +68,6 @@ class _mainState extends State<mainApp> {
 
   @override
   void initState() {
-    // TODO: implement initState
-    super.initState();
     apiservice.getCovidSummaryIndonesia().then((value) => {
           setState(() {
             covidSummary = value;
@@ -84,36 +83,40 @@ class _mainState extends State<mainApp> {
           value.sort((a, b) => a.cNamaProvinsi.compareTo(b.cNamaProvinsi)),
           value.insert(0, covidSummaryIndonesia)
         });
+    super.initState();
   }
 
   void checkDailyCaseLimit(value) async {
     final prefs = await SharedPreferences.getInstance();
-    int dailyCaselimit = (prefs.getInt('dailyCaseLimit') ?? 0) * 1000;
-    if (value.cDailyCase > dailyCaselimit) {
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: Text("Warning",
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center),
-          content: Wrap(
-            children: [
-              Column(
-                children: [
-                  Image.asset(
-                    'assets/images/dailycasewarning.png',
-                    width: MediaQuery.of(context).size.width / 2,
-                  ),
-                  Text(
-                    "Daily Case in Indonesia Reach ${value.cDailyCase} Case Perday",
-                    textAlign: TextAlign.center,
-                  )
-                ],
-              ),
-            ],
+    if (prefs.containsKey("dailyCaseLimit") &&
+        prefs.getInt('dailyCaseLimit') != null) {
+      int dailyCaselimit = (prefs.getInt('dailyCaseLimit') ?? 0) * 1000;
+      if (value.cDailyCase > dailyCaselimit) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text("Warning",
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center),
+            content: Wrap(
+              children: [
+                Column(
+                  children: [
+                    Image.asset(
+                      'assets/images/dailycasewarning.png',
+                      width: MediaQuery.of(context).size.width / 2,
+                    ),
+                    Text(
+                      "Daily Case in Indonesia Reach ${value.cDailyCase} Case Perday",
+                      textAlign: TextAlign.center,
+                    )
+                  ],
+                ),
+              ],
+            ),
           ),
-        ),
-      );
+        );
+      }
     }
   }
 
@@ -516,8 +519,7 @@ class _mainState extends State<mainApp> {
               context,
               MaterialPageRoute(
                 builder: (context) {
-                  return vaccination();
-                  // return splashScreen();
+                  return hospitals();
                 },
               ),
             );

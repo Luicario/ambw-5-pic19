@@ -28,6 +28,7 @@ class _vaccinationState extends State<vaccination> {
       isFirstLoading = true;
   customWidgets customWidget = customWidgets();
   int jumlahLokasiVaksin = 0;
+  final ScrollController _scrollController = ScrollController();
   List<String> month = [
     "Jan",
     "Feb",
@@ -44,9 +45,13 @@ class _vaccinationState extends State<vaccination> {
   ];
 
   @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
   void initState() {
-    // TODO: implement initState
-    super.initState();
     listProvinsiVaksin = apiservice.getAllProvinsiVaksin();
     listVacc = apiservice.getAllLokasiVaksin("none");
     listProvinsiVaksin.then(
@@ -57,6 +62,13 @@ class _vaccinationState extends State<vaccination> {
         },
       ),
     );
+    super.initState();
+  }
+
+  void scrollToTop() {
+    _scrollController.animateTo(_scrollController.position.minScrollExtent,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.fastOutSlowIn);
   }
 
   @override
@@ -228,7 +240,7 @@ class _vaccinationState extends State<vaccination> {
                     var lokasi = snapshot.data!;
                     return Expanded(
                       child: ListView.builder(
-                        // controller: _scrollController,
+                        controller: _scrollController,
                         itemCount: lokasi.length,
                         itemBuilder: (BuildContext context, int index) {
                           return Row(
@@ -255,6 +267,13 @@ class _vaccinationState extends State<vaccination> {
               ),
             ],
           ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            (isFound && jumlahLokasiVaksin != 0) ? scrollToTop() : null;
+          },
+          backgroundColor: primaryColor,
+          child: Icon(Icons.keyboard_double_arrow_up_rounded),
         ),
       ),
     );

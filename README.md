@@ -27,7 +27,6 @@ Kelompok 5 - AMBW
 - [George Kim](https://github.com/ge0rgekim)
 
 ## API Reference
-- [covid19.mathdro.id/api](https://covid19.mathdro.id/api) 
 - [covid19.iversonkrysthio.repl.co](https://covid19.iversonkrysthio.repl.co) (Temporary deployed)
 - [covid19.go.id/dokumentasi-api](https://covid19.go.id/dokumentasi-api )
 - [api.vaksinasi.id](https://api.vaksinasi.id)
@@ -69,13 +68,13 @@ Common widgets used by each page
 **Pages List**
 No | Halaman | PIC | Status
 | :--- | :--- | :---: | :--:
-1  | Splash Screen | George | 💻
-2  | Home Screen | George | 🚧
-3 | Rss Feed | George | 🚧
+1  | Splash Screen | George | ✅
+2  | Home Screen | George | ✅
+3 | Rss Feed | George | ✅
 4 | Search Hospitals | Iverson | ✅
-5 | Hospital Details | Iverson | 💻
-6 | Search Vaccination | Louis | 🚧
-7 | Settings | Louis | 🚧
+5 | Hospital Details | Iverson | ✅
+6 | Search Vaccination | Louis | ✅
+7 | Settings | Louis | ✅
 
 **Status Icon**
 No | Status | Icon |

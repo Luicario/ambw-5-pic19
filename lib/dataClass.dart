@@ -116,3 +116,90 @@ class cLokasiVaksin {
         map: json['map']);
   }
 }
+
+class cDataProvinsi {
+  late String cNama;
+  late String cId;
+  late List<cDataKabKota> ckabkota;
+
+  cDataProvinsi(
+      {required this.cNama, required this.cId, required this.ckabkota});
+
+  factory cDataProvinsi.fromJSON(Map<String, dynamic> json) {
+    List data = json['data_kabkota'];
+    return cDataProvinsi(
+        cNama: json['nama_provinsi'],
+        cId: json['id_provinsi'],
+        ckabkota: data.map((data) => cDataKabKota.fromJSON(data)).toList());
+  }
+}
+
+class cDataKabKota {
+  late String cId;
+  late String cNama;
+
+  cDataKabKota({required this.cId, required this.cNama});
+
+  factory cDataKabKota.fromJSON(Map<String, dynamic> json) {
+    return cDataKabKota(cId: json['id_kabkota'], cNama: json['nama_kabkota']);
+  }
+}
+
+class cDataRs {
+  late int cId;
+  late String cNama;
+  late String cAlamat;
+  late int cBedIgd;
+  late String cHotline;
+
+  cDataRs(
+      {required this.cId,
+      required this.cNama,
+      required this.cAlamat,
+      required this.cBedIgd,
+      required this.cHotline});
+
+  factory cDataRs.fromJSON(Map<String, dynamic> json) {
+    return cDataRs(
+        cId: json['id_rs'],
+        cNama: json['nama'],
+        cAlamat: json['alamat'],
+        cBedIgd: json['bed_igd'],
+        cHotline: json['hotline']);
+  }
+}
+
+class cDataKamar {
+  late String cNama;
+  late String cLastUpdate;
+  late cStatus status;
+
+  cDataKamar(
+      {required this.cNama, required this.cLastUpdate, required this.status});
+
+  factory cDataKamar.fromJSON(Map<String, dynamic> json) {
+    var sts = json['status'];
+    var antrian =
+        sts['antrian'].toString() == "null" ? "0" : sts['antrian'].toString();
+
+    cStatus cstatus = cStatus(
+        cTempatTidur: sts['tempat_tidur'],
+        cKosong: sts['kosong'],
+        cAntrian: antrian);
+    return cDataKamar(
+        cNama: json['nama_kamar'],
+        cLastUpdate: json['last_update'],
+        status: cstatus);
+  }
+}
+
+class cStatus {
+  late String cTempatTidur;
+  late String cKosong;
+  late String cAntrian;
+
+  cStatus(
+      {required this.cTempatTidur,
+      required this.cKosong,
+      required this.cAntrian});
+}

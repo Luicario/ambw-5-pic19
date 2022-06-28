@@ -16,8 +16,6 @@ class _settingsState extends State<settings> {
 
   @override
   void initState() {
-    // TODO: implement initState
-    super.initState();
     dailyCaseLimitFuture = getDailyCaseLimit();
     dailyCaseLimitFuture.then(
       (value) => setState(
@@ -26,6 +24,7 @@ class _settingsState extends State<settings> {
         },
       ),
     );
+    super.initState();
   }
 
   Future<double> getDailyCaseLimit() async {
@@ -125,6 +124,11 @@ class _settingsState extends State<settings> {
                           final prefs = await SharedPreferences.getInstance();
                           await prefs.setInt(
                               'dailyCaseLimit', dailyCaseValue.toInt());
+
+                          Future.delayed(const Duration(milliseconds: 1500),
+                              () {
+                            Navigator.of(context).pop();
+                          });
                         },
                         child: Text(
                           "Save Limit",
