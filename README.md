@@ -1,5 +1,6 @@
 
 # PIC - Portal Informasi Covid 19
+![logo](https://user-images.githubusercontent.com/74914280/176128504-aea49e04-3ca2-4652-a0d5-13f8bc4d2c2e.png)
 
 Portal Informasi Covid, yang dimana aplikasi menampilkan :
 - Berita seputar kesehatan/covid19
