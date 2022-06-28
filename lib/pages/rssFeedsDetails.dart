@@ -24,8 +24,6 @@ class _rssFeedsDetailsState extends State<rssFeedsDetails> {
 
   @override
   void initState() {
-    // TODO: implement initState
-    super.initState();
     listFeeds = apiservice.getData(widget.rssFeeds.cEndPoint);
     listFeeds.then(
       (value) => {
@@ -34,6 +32,7 @@ class _rssFeedsDetailsState extends State<rssFeedsDetails> {
         }),
       },
     );
+    super.initState();
   }
 
   @override

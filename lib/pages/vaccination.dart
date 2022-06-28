@@ -45,8 +45,6 @@ class _vaccinationState extends State<vaccination> {
 
   @override
   void initState() {
-    // TODO: implement initState
-    super.initState();
     listProvinsiVaksin = apiservice.getAllProvinsiVaksin();
     listVacc = apiservice.getAllLokasiVaksin("none");
     listProvinsiVaksin.then(
@@ -57,6 +55,7 @@ class _vaccinationState extends State<vaccination> {
         },
       ),
     );
+    super.initState();
   }
 
   @override

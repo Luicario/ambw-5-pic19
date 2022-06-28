@@ -16,8 +16,6 @@ class _settingsState extends State<settings> {
 
   @override
   void initState() {
-    // TODO: implement initState
-    super.initState();
     dailyCaseLimitFuture = getDailyCaseLimit();
     dailyCaseLimitFuture.then(
       (value) => setState(
@@ -26,6 +24,7 @@ class _settingsState extends State<settings> {
         },
       ),
     );
+    super.initState();
   }
 
   Future<double> getDailyCaseLimit() async {

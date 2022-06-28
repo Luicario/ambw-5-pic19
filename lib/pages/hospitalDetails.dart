@@ -25,7 +25,6 @@ class _hospitalDetailsState extends State<hospitalDetails> {
 
   @override
   void initState() {
-    super.initState();
     ListKamar = apiservice.getAllKamar(
         widget.selectedRS.cId.toString(), widget.id_provinsi);
     ListKamar.then(
@@ -42,6 +41,7 @@ class _hospitalDetailsState extends State<hospitalDetails> {
         },
       ),
     );
+    super.initState();
   }
 
   @override

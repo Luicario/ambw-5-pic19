@@ -68,8 +68,6 @@ class _mainState extends State<mainApp> {
 
   @override
   void initState() {
-    // TODO: implement initState
-    super.initState();
     apiservice.getCovidSummaryIndonesia().then((value) => {
           setState(() {
             covidSummary = value;
@@ -85,6 +83,7 @@ class _mainState extends State<mainApp> {
           value.sort((a, b) => a.cNamaProvinsi.compareTo(b.cNamaProvinsi)),
           value.insert(0, covidSummaryIndonesia)
         });
+    super.initState();
   }
 
   void checkDailyCaseLimit(value) async {
