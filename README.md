@@ -49,15 +49,25 @@ Common widgets used by each page
 - Badges
 - widget pendukung lainnya.
 
-**Additional Widgets Per Pages (will get updated)**
+**Additional Widgets Per Pages**
 
-- Splash Screen :
-- Home Screen   :
-- RSS Feed      :
-- Search Hospitals:
-- Hospital Details :
-- Search Vaccination
-- Settings :
+Hospitals : Scaffold, icon Button, navigator,  icon, Text, Container, Row, Column, Expanded, sizedBox, FutureBuilder, size box, DropdownButtonHideUnderline, DropdownButton, Dropdown Menu Item, gesture detector, shimmer, badge, floating action button, Image, Centre, IgnorePointer, List View builder.
+
+Hospital Details: Scaffold, icon Button, Navigator, Text, Column, Row, Expanded, Container, size box, Future Builder, Centre, List View builder.
+
+Vaccination :
+Scaffold, iconButton, Icon, Text, Image, Container, Row, Column, Expanded, sizedBox, ListView, FutureBuilder, DropdownButtonHideUnderline, DropdownButton, DropdownMenuItem, Shimmer, floating action button, textButton, ExpansionTile
+	
+Settings :
+Scaffold, text, navigator, Icon button, expanded, column, row, container, size box, slider, TextButton.
+
+Splash Screen :  Scaffold, Column, Row, Container, Expanded, Image, Builder, TextButton, Navigator.
+
+Home Screen :  Scaffold, IconButton, Icon, Text, Column, Row, Container, Expanded, SizedBox, List, ListView, Wrap, Image, Navigator, GestureDetector,  Scrollbar, SingleChildScrollView, FutureBuilder, Dropdownbutton2, Dropdown Menu Item, Shimmer, CachedNetworkImage.
+
+Settings : IconButton, Icon, Text, Column, Row, Container, Expanded, SizedBox, SliderTheme, TextButton
+
+RSS Feeds : Scaffold, Navigator, IconButton, Icon, Text, Column, Row, Container, Expanded, List, SizedBox, FutureBuilder, ListView, GestureDetector, Positioned, ClipRRect,  CachedNetworkImage, Image, Shimmer. 
 
 ## Pembagian Kerja Per Halaman
 - [Louis Margatan](https://github.com/Luicario) : settings, search, dan lokasi vaksinasi.

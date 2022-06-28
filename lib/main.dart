@@ -360,10 +360,6 @@ class _mainState extends State<mainApp> {
           ),
         ),
       ),
-<<<<<<< HEAD
-      home: const MyHomePage(title: 'PIC'),
-=======
->>>>>>> 339aba81bdf6d72bba34091380378851a2c491e2
     );
   }
 
