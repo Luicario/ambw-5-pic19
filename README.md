@@ -90,6 +90,20 @@ All image assets used in our application are taken from
 - [Flaticon](https://www.flaticon.com/)
 - [Freepik](https://www.freepik.com/)
 
+## Reference
+- [Flutter color hex : How to use hex colors in Flutter?](https://educity.app/flutter/how-to-use-hexadecimal-color-string-in-flutter)
+- [Flutter disable bottom border on focus](https://www.codegrepper.com/code-examples/dart/flutter+disable+bottom+border+on+focus)
+- [Leading property](https://api.flutter.dev/flutter/material/AppBar/leading.html)
+- [Customizing the AppBar in Flutter: An overview with examples](https://blog.logrocket.com/flutter-appbar-tutorial/#:~:text=Customizing%20the%20AppBar-,What%20is%20the%20AppBar%20in%20Flutter%3F,other%20widgets%20within%20its%20layout)
+- [Control & disable a dropdown button in flutter?](https://stackoverflow.com/questions/49693131/control-disable-a-dropdown-button-in-flutter)
+- [Flutter – How to scroll ListView to top or bottom programmatically](https://coflutter.com/flutter-how-to-scroll-listview-to-top-or-bottom-programmatically/)
+- [Flutter Tutorial - Parsing XML and JSON Data | Dart](https://www.youtube.com/watch?v=sTXboh2K2Dw)
+- [How to remove the divider lines of an ExpansionTile when expanded in Flutter](https://stackoverflow.com/questions/62667990/how-to-remove-the-divider-lines-of-an-expansiontile-when-expanded-in-flutter)
+- [ExpansionPanel (Flutter Widget of the Week)](https://www.youtube.com/watch?v=2aJZzRMziJc)
+- [Flutter Tutorial - Slider [2021]](https://www.youtube.com/watch?v=vuw818gAlF8)
+- [Flutter Tutorial - Add Custom Fonts & Google Fonts](https://www.youtube.com/watch?v=Gf-cyiWlmEI)
+- [How to change the default font family in Flutter](https://stackoverflow.com/questions/64237031/how-to-change-the-default-font-family-in-flutter)
+
 ## Pembagian Kerja Per Halaman
 - [Louis Margatan](https://github.com/Luicario) : settings, search, dan lokasi vaksinasi.
 - [Iverson Krysthio](https://github.com/iberso) : search hospitals dan hospital detail.
