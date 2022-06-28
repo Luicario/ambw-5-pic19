@@ -27,7 +27,6 @@ Kelompok 5 - AMBW
 - [George Kim](https://github.com/ge0rgekim)
 
 ## API Reference
-- [covid19.mathdro.id/api](https://covid19.mathdro.id/api) 
 - [covid19.iversonkrysthio.repl.co](https://covid19.iversonkrysthio.repl.co) (Temporary deployed)
 - [covid19.go.id/dokumentasi-api](https://covid19.go.id/dokumentasi-api )
 - [api.vaksinasi.id](https://api.vaksinasi.id)
