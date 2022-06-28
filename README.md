@@ -53,23 +53,42 @@ Common widgets used by each page
 
 **Additional Widgets Per Pages**
 
-**Hospitals :** Scaffold, icon Button, navigator,  icon, Text, Container, Row, Column, Expanded, sizedBox, FutureBuilder, size box, DropdownButtonHideUnderline, DropdownButton, Dropdown Menu Item, gesture detector, shimmer, badge, floating action button, Image, Centre, IgnorePointer, List View builder.
+- **Hospitals :** Scaffold, icon Button, navigator,  icon, Text, Container, Row, Column, Expanded, sizedBox, FutureBuilder, size box, DropdownButtonHideUnderline, DropdownButton, Dropdown Menu Item, gesture detector, shimmer, badge, floating action button, Image, Centre, IgnorePointer, List View builder.
 
-**Hospital Details :** Scaffold, icon Button, Navigator, Text, Column, Row, Expanded, Container, size box, Future Builder, Centre, List View builder.
+- **Hospital Details :** Scaffold, icon Button, Navigator, Text, Column, Row, Expanded, Container, size box, Future Builder, Centre, List View builder.
 
-**Vaccination :**
+- **Vaccination :**
 Scaffold, iconButton, Icon, Text, Image, Container, Row, Column, Expanded, sizedBox, ListView, FutureBuilder, DropdownButtonHideUnderline, DropdownButton, DropdownMenuItem, Shimmer, floating action button, textButton, ExpansionTile
 	
-**Settings :**
+- **Settings :**
 Scaffold, text, navigator, Icon button, expanded, column, row, container, size box, slider, TextButton.
 
-**Splash Screen :**  Scaffold, Column, Row, Container, Expanded, Image, Builder, TextButton, Navigator.
+- **Splash Screen :**  Scaffold, Column, Row, Container, Expanded, Image, Builder, TextButton, Navigator.
 
-**Home Screen :**  Scaffold, IconButton, Icon, Text, Column, Row, Container, Expanded, SizedBox, List, ListView, Wrap, Image, Navigator, GestureDetector,  Scrollbar, SingleChildScrollView, FutureBuilder, Dropdownbutton2, Dropdown Menu Item, Shimmer, CachedNetworkImage.
+- **Home Screen :**  Scaffold, IconButton, Icon, Text, Column, Row, Container, Expanded, SizedBox, List, ListView, Wrap, Image, Navigator, GestureDetector,  Scrollbar, SingleChildScrollView, FutureBuilder, Dropdownbutton2, Dropdown Menu Item, Shimmer, CachedNetworkImage.
 
-**Settings :** IconButton, Icon, Text, Column, Row, Container, Expanded, SizedBox, SliderTheme, TextButton
+- **Settings :** IconButton, Icon, Text, Column, Row, Container, Expanded, SizedBox, SliderTheme, TextButton
 
-**RSS Feeds :** Scaffold, Navigator, IconButton, Icon, Text, Column, Row, Container, Expanded, List, SizedBox, FutureBuilder, ListView, GestureDetector, Positioned, ClipRRect,  CachedNetworkImage, Image, Shimmer. 
+- **RSS Feeds :** Scaffold, Navigator, IconButton, Icon, Text, Column, Row, Container, Expanded, List, SizedBox, FutureBuilder, ListView, GestureDetector, Positioned, ClipRRect,  CachedNetworkImage, Image, Shimmer. 
+
+## Dependency
+- [Shimmer](https://pub.dev/packages/shimmer)
+- [Badges](https://pub.dev/packages/badges)
+- [Dropdown Button](https://pub.dev/packages/dropdown_button2)
+- [XML](https://pub.dev/packages/xml)
+- [Money Formatter](https://pub.dev/packages/money_formatter)
+- [Cached Network Image](https://pub.dev/packages/cached_network_image)
+- [HTTP](https://pub.dev/packages/http)
+- [Shared Preferences](https://pub.dev/packages/shared_preferences)
+- [Google Fonts](https://pub.dev/packages/google_fonts)
+- [Url Launcher](https://pub.dev/packages/url_launcher)
+- [Expansion Tile](https://pub.dev/packages/configurable_expansion_tile_null_safety)
+
+## Credit
+All image assets used in our application are taken from
+- [StorySet](https://storyset.com/)
+- [Flaticon](https://www.flaticon.com/)
+- [Freepik](https://www.freepik.com/)
 
 ## Pembagian Kerja Per Halaman
 - [Louis Margatan](https://github.com/Luicario) : settings, search, dan lokasi vaksinasi.
@@ -94,3 +113,5 @@ No | Status | Icon |
 1 | Done | ✅
 2 | On-Going | 💻
 3 | Not yet started | 🚧
+
+
