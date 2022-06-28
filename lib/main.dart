@@ -88,32 +88,35 @@ class _mainState extends State<mainApp> {
 
   void checkDailyCaseLimit(value) async {
     final prefs = await SharedPreferences.getInstance();
-    int dailyCaselimit = (prefs.getInt('dailyCaseLimit') ?? 0) * 1000;
-    if (value.cDailyCase > dailyCaselimit) {
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: Text("Warning",
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center),
-          content: Wrap(
-            children: [
-              Column(
-                children: [
-                  Image.asset(
-                    'assets/images/dailycasewarning.png',
-                    width: MediaQuery.of(context).size.width / 2,
-                  ),
-                  Text(
-                    "Daily Case in Indonesia Reach ${value.cDailyCase} Case Perday",
-                    textAlign: TextAlign.center,
-                  )
-                ],
-              ),
-            ],
+    if (prefs.containsKey("dailyCaseLimit") &&
+        prefs.getInt('dailyCaseLimit') != null) {
+      int dailyCaselimit = (prefs.getInt('dailyCaseLimit') ?? 0) * 1000;
+      if (value.cDailyCase > dailyCaselimit) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text("Warning",
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center),
+            content: Wrap(
+              children: [
+                Column(
+                  children: [
+                    Image.asset(
+                      'assets/images/dailycasewarning.png',
+                      width: MediaQuery.of(context).size.width / 2,
+                    ),
+                    Text(
+                      "Daily Case in Indonesia Reach ${value.cDailyCase} Case Perday",
+                      textAlign: TextAlign.center,
+                    )
+                  ],
+                ),
+              ],
+            ),
           ),
-        ),
-      );
+        );
+      }
     }
   }
 

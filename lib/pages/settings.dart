@@ -125,6 +125,11 @@ class _settingsState extends State<settings> {
                           final prefs = await SharedPreferences.getInstance();
                           await prefs.setInt(
                               'dailyCaseLimit', dailyCaseValue.toInt());
+
+                          Future.delayed(const Duration(milliseconds: 1500),
+                              () {
+                            Navigator.of(context).pop();
+                          });
                         },
                         child: Text(
                           "Save Limit",
