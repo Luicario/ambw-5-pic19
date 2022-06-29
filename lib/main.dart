@@ -109,7 +109,7 @@ class _mainState extends State<mainApp> {
                       width: MediaQuery.of(context).size.width / 2,
                     ),
                     Text(
-                      "Daily Case in Indonesia Reach ${value.cDailyCase} Case Perday",
+                      "Daily Case in Indonesia Reach ${MoneyFormatter(amount: value.cDailyCase.toDouble()).output.withoutFractionDigits} Case Perday",
                       textAlign: TextAlign.center,
                     )
                   ],

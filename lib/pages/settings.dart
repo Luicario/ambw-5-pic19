@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:money_formatter/money_formatter.dart';
 import 'package:pic_19/customColors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -109,9 +110,14 @@ class _settingsState extends State<settings> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Text("Min. 1000"),
-                        Text((dailyCaseValue.toInt() * 1000).toString()),
-                        Text("Max. 10.000"),
+                        Text("Min. 1,000"),
+                        Text(MoneyFormatter(
+                                amount:
+                                    dailyCaseValue.toInt() * 1000.toDouble())
+                            .output
+                            .withoutFractionDigits
+                            .toString()),
+                        Text("Max. 10,000"),
                       ],
                     ),
                     SizedBox(
