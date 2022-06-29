@@ -87,7 +87,7 @@ Scaffold, text, navigator, Icon button, expanded, column, row, container, size b
 - [Expansion Tile](https://pub.dev/packages/configurable_expansion_tile_null_safety)
 - [Touch Ripple Effect](https://pub.dev/packages/touch_ripple_effect)
 - [Animated Flip Counter](https://pub.dev/packages/animated_flip_counter)
-- [Flutter Tutorial - How to Change App Icon and App Name | The Right Way [2021] Android & iOS](https://www.youtube.com/watch?v=eMHbgIgJyUQ)
+- [Flutter Icon Launcher](https://pub.dev/packages/flutter_launcher_icons)
 ## Credit
 All image assets used in our application are taken from
 - [StorySet](https://storyset.com/)
@@ -107,6 +107,7 @@ All image assets used in our application are taken from
 - [Flutter Tutorial - Slider [2021]](https://www.youtube.com/watch?v=vuw818gAlF8)
 - [Flutter Tutorial - Add Custom Fonts & Google Fonts](https://www.youtube.com/watch?v=Gf-cyiWlmEI)
 - [How to change the default font family in Flutter](https://stackoverflow.com/questions/64237031/how-to-change-the-default-font-family-in-flutter)
+- [Flutter Tutorial - How to Change App Icon and App Name | The Right Way [2021] Android & iOS](https://www.youtube.com/watch?v=eMHbgIgJyUQ)
 
 ## Pembagian Kerja Per Halaman
 - [Louis Margatan](https://github.com/Luicario) : settings, search, dan lokasi vaksinasi.
