@@ -590,10 +590,10 @@ class _mainState extends State<mainApp> {
                   ),
                 ],
               ),
-              SizedBox(height: 10),
             ],
           ),
         ),
+        SizedBox(height: 10),
         TouchRippleEffect(
           borderRadius: BorderRadius.circular(5),
           rippleColor: primaryColor,
