@@ -67,7 +67,7 @@ Scaffold, text, navigator, Icon button, expanded, column, row, container, size b
 
 - **Splash Screen :**  Scaffold, Column, Row, Container, Expanded, Image, Builder, TextButton, Navigator.
 
-- **Home Screen :**  Scaffold, IconButton, Icon, Text, Column, Row, Container, Expanded, SizedBox, List, ListView, Wrap, Image, Navigator, Touch Ripple Effect,  Scrollbar, SingleChildScrollView, FutureBuilder, Dropdownbutton2, Dropdown Menu Item, Shimmer, CachedNetworkImage.
+- **Home Screen :**  Scaffold, IconButton, Icon, Text, Column, Row, Container, Expanded, SizedBox, List, ListView, Wrap, Image, Navigator, Touch Ripple Effect,  Scrollbar, SingleChildScrollView, FutureBuilder, Dropdownbutton2, Dropdown Menu Item, Shimmer, CachedNetworkImage,animated flip counter.
 
 - **Settings :** IconButton, Icon, Text, Column, Row, Container, Expanded, SizedBox, SliderTheme, TextButton
 
@@ -86,6 +86,7 @@ Scaffold, text, navigator, Icon button, expanded, column, row, container, size b
 - [Url Launcher](https://pub.dev/packages/url_launcher)
 - [Expansion Tile](https://pub.dev/packages/configurable_expansion_tile_null_safety)
 - [Touch Ripple Effect](https://pub.dev/packages/touch_ripple_effect)
+- [Animated Flip Counter](https://pub.dev/packages/animated_flip_counter)
 
 ## Credit
 All image assets used in our application are taken from

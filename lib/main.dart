@@ -1,3 +1,4 @@
+import 'package:animated_flip_counter/animated_flip_counter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
@@ -769,17 +770,28 @@ class _mainState extends State<mainApp> {
           ),
           Padding(
             padding: EdgeInsets.symmetric(vertical: 2),
-            child: Text(
-              MoneyFormatter(amount: data.toDouble())
-                  .output
-                  .withoutFractionDigits
-                  .toString(),
-              style: GoogleFonts.poppins(
+            child: AnimatedFlipCounter(
+              value: data,
+              duration: Duration(seconds: 1),
+              curve: Curves.easeIn,
+              thousandSeparator: '.',
+              textStyle: GoogleFonts.poppins(
                 fontSize: 15,
                 color: textcolor,
                 fontWeight: FontWeight.w700,
               ),
             ),
+            // Text(
+            //   MoneyFormatter(amount: data.toDouble())
+            //       .output
+            //       .withoutFractionDigits
+            //       .toString(),
+            //   style: GoogleFonts.poppins(
+            //     fontSize: 15,
+            //     color: textcolor,
+            //     fontWeight: FontWeight.w700,
+            //   ),
+            // ),
           ),
           Text(
             bottomtext,
