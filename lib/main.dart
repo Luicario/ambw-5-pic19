@@ -435,24 +435,28 @@ class _mainState extends State<mainApp> {
         itemCount: rssFeedsDataView.length,
 
         itemBuilder: (BuildContext context, int index) {
-          return GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return rssFeedsDetails(rssFeeds: rssFeedsDataView[index]);
-                  },
-                ),
-              );
-            },
-            child: Row(
-              children: [
-                Column(
+          return Row(
+            children: [
+              TouchRippleEffect(
+                borderRadius: BorderRadius.circular(5),
+                rippleColor: primaryColor,
+                height: 160,
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return rssFeedsDetails(
+                            rssFeeds: rssFeedsDataView[index]);
+                      },
+                    ),
+                  );
+                },
+                child: Column(
                   children: [
                     Container(
                       width: 115,
-                      height: 120,
+                      height: 125,
                       decoration: new BoxDecoration(
                         color: lightBlueColor,
                         borderRadius: BorderRadius.only(
@@ -467,6 +471,7 @@ class _mainState extends State<mainApp> {
                     ),
                     Container(
                       width: 115,
+                      height: 35,
                       padding: EdgeInsets.symmetric(vertical: 5),
                       decoration: new BoxDecoration(
                         color: primaryColor,
@@ -487,9 +492,9 @@ class _mainState extends State<mainApp> {
                     ),
                   ],
                 ),
-                SizedBox(width: 10)
-              ],
-            ),
+              ),
+              SizedBox(width: 10)
+            ],
           );
         },
       ),
