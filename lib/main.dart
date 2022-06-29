@@ -276,24 +276,29 @@ class _mainState extends State<mainApp> {
                                   fontSize: 20,
                                 ),
                               ),
-                              Text(
-                                covidSummary.cLastUpdate
-                                        .substring(0, 10)
-                                        .split('-')[2]
-                                        .toString() +
-                                    "-" +
-                                    month[int.parse(covidSummary.cLastUpdate
-                                            .toString()
-                                            .split('-')[1])]
-                                        .toString() +
-                                    "-" +
-                                    covidSummary.cLastUpdate
-                                        .toString()
-                                        .substring(0, 10)
-                                        .split('-')[0]
-                                        .toString(),
-                                style: TextStyle(fontSize: 15),
-                              )
+                              isFirstLoading
+                                  ? Container(
+                                      width: 150,
+                                      child: customWidget.shimmerLoading(20))
+                                  : Text(
+                                      covidSummary.cLastUpdate
+                                              .substring(0, 10)
+                                              .split('-')[2]
+                                              .toString() +
+                                          "-" +
+                                          month[int.parse(covidSummary
+                                                  .cLastUpdate
+                                                  .toString()
+                                                  .split('-')[1])]
+                                              .toString() +
+                                          "-" +
+                                          covidSummary.cLastUpdate
+                                              .toString()
+                                              .substring(0, 10)
+                                              .split('-')[0]
+                                              .toString(),
+                                      style: TextStyle(fontSize: 15),
+                                    )
                             ],
                           ),
                           SizedBox(height: 10),
