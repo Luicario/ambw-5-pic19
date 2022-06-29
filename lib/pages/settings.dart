@@ -15,6 +15,35 @@ class _settingsState extends State<settings> {
   late Future<double> dailyCaseLimitFuture;
   late double dailyCaseValue = 1;
 
+  List<Text> apiReference = [
+    Text("- covid19.iversonkrysthio.repl.co (Temporary Deployed)"),
+    Text("- covid19.go.id/dokumentasi-api"),
+    Text("- api.vaksinasi.id")
+  ];
+
+  List<Text> dependency = [
+    Text("- Shimmer"),
+    Text("- Badges"),
+    Text("- Dropdown Button"),
+    Text("- XML"),
+    Text("- Money Formatter"),
+    Text("- Cached Network Image"),
+    Text("- HTTP"),
+    Text("- Shared Preferences"),
+    Text("- Google Fonts"),
+    Text("- Url Launcher"),
+    Text("- Configurable Expansion Tile"),
+    Text("- Touch Ripple Effect"),
+    Text("- Animated Flip Counter"),
+    Text("- Flutter Icon Launcher")
+  ];
+
+  List<Text> ImageAssets = [
+    Text("- StorySet"),
+    Text("- Flaticon"),
+    Text("- Freepik"),
+  ];
+
   @override
   void initState() {
     dailyCaseLimitFuture = getDailyCaseLimit();
@@ -56,10 +85,10 @@ class _settingsState extends State<settings> {
           centerTitle: true,
           elevation: 0,
         ),
-        body: Column(
-          children: [
-            Expanded(
-              child: Container(
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
                 width: double.infinity,
                 padding: EdgeInsets.symmetric(
                   horizontal: 20,
@@ -155,11 +184,88 @@ class _settingsState extends State<settings> {
                         ),
                       ),
                     ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      "Credit",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
+                    Text(
+                      "API Reference :",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15,
+                      ),
+                    ),
+                    DefaultTextStyle(
+                      style: TextStyle(
+                        color: Colors.black,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: apiReference,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      "Dependency :",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15,
+                      ),
+                    ),
+                    DefaultTextStyle(
+                      style: TextStyle(
+                        color: Colors.black,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: dependency,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      "Images Assets :",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15,
+                      ),
+                    ),
+                    DefaultTextStyle(
+                      style: TextStyle(
+                        color: Colors.black,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: ImageAssets,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    Container(
+                      width: double.infinity,
+                      child: Text(
+                        "@Kelompok 5 - AMBW 2022",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 15,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
                   ],
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

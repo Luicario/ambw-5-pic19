@@ -333,10 +333,8 @@ class _mainState extends State<mainApp> {
                                     covidSummary.cDeaths,
                                     Colors.grey.shade300,
                                     Colors.grey.shade700,
-                                    "https://cdn-icons-png.flaticon.com/512/2552/2552797.png"
-                                    // "https://cdn-icons-png.flaticon.com/512/983/983061.png"
-
-                                    ),
+                                    // "https://cdn-icons-png.flaticon.com/512/2552/2552797.png"
+                                    "https://cdn-icons-png.flaticon.com/512/983/983061.png"),
                               )
                             ],
                           ),
@@ -412,7 +410,10 @@ class _mainState extends State<mainApp> {
   Widget cardListViewRSSFeeds() {
     List<cRssFeedsDataView> rssFeedsDataView = [
       cRssFeedsDataView(
-          cName: "News", cImage: "assets/images/news.png", cEndPoint: "berita"),
+        cName: "News",
+        cImage: "assets/images/news.png",
+        cEndPoint: "berita",
+      ),
       cRssFeedsDataView(
           cName: "Public",
           cImage: "assets/images/public.png",

@@ -84,7 +84,7 @@ Scaffold, text, navigator, Icon button, expanded, column, row, container, size b
 - [Shared Preferences](https://pub.dev/packages/shared_preferences)
 - [Google Fonts](https://pub.dev/packages/google_fonts)
 - [Url Launcher](https://pub.dev/packages/url_launcher)
-- [Expansion Tile](https://pub.dev/packages/configurable_expansion_tile_null_safety)
+- [Configurable Expansion Tile](https://pub.dev/packages/configurable_expansion_tile_null_safety)
 - [Touch Ripple Effect](https://pub.dev/packages/touch_ripple_effect)
 - [Animated Flip Counter](https://pub.dev/packages/animated_flip_counter)
 - [Flutter Icon Launcher](https://pub.dev/packages/flutter_launcher_icons)

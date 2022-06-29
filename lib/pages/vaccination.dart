@@ -66,9 +66,11 @@ class _vaccinationState extends State<vaccination> {
   }
 
   void scrollToTop() {
-    _scrollController.animateTo(_scrollController.position.minScrollExtent,
-        duration: const Duration(milliseconds: 500),
-        curve: Curves.fastOutSlowIn);
+    if (_scrollController.offset != 0.0) {
+      _scrollController.animateTo(_scrollController.position.minScrollExtent,
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.fastOutSlowIn);
+    }
   }
 
   @override
