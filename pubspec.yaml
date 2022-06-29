@@ -45,6 +45,7 @@ dependencies:
   xml: ^5.3.1
   configurable_expansion_tile_null_safety: ^2.0.2
   badges: ^2.0.3
+  touch_ripple_effect: ^2.2.3
 
 dev_dependencies:
   flutter_test:

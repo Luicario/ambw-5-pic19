@@ -50,6 +50,7 @@ Common widgets used by each page
 - Skeleton loading
 - Shimmer loading
 - Badges
+- Touch Ripple Effect
 - widget pendukung lainnya.
 
 **Additional Widgets Per Pages**
@@ -66,11 +67,11 @@ Scaffold, text, navigator, Icon button, expanded, column, row, container, size b
 
 - **Splash Screen :**  Scaffold, Column, Row, Container, Expanded, Image, Builder, TextButton, Navigator.
 
-- **Home Screen :**  Scaffold, IconButton, Icon, Text, Column, Row, Container, Expanded, SizedBox, List, ListView, Wrap, Image, Navigator, GestureDetector,  Scrollbar, SingleChildScrollView, FutureBuilder, Dropdownbutton2, Dropdown Menu Item, Shimmer, CachedNetworkImage.
+- **Home Screen :**  Scaffold, IconButton, Icon, Text, Column, Row, Container, Expanded, SizedBox, List, ListView, Wrap, Image, Navigator, Touch Ripple Effect,  Scrollbar, SingleChildScrollView, FutureBuilder, Dropdownbutton2, Dropdown Menu Item, Shimmer, CachedNetworkImage.
 
 - **Settings :** IconButton, Icon, Text, Column, Row, Container, Expanded, SizedBox, SliderTheme, TextButton
 
-- **RSS Feeds :** Scaffold, Navigator, IconButton, Icon, Text, Column, Row, Container, Expanded, List, SizedBox, FutureBuilder, ListView, GestureDetector, Positioned, ClipRRect,  CachedNetworkImage, Image, Shimmer. 
+- **RSS Feeds :** Scaffold, Navigator, IconButton, Icon, Text, Column, Row, Container, Expanded, List, SizedBox, FutureBuilder, ListView, Touch Ripple Effect, Positioned, ClipRRect,  CachedNetworkImage, Image, Shimmer. 
 
 ## Dependency
 - [Shimmer](https://pub.dev/packages/shimmer)
@@ -84,6 +85,7 @@ Scaffold, text, navigator, Icon button, expanded, column, row, container, size b
 - [Google Fonts](https://pub.dev/packages/google_fonts)
 - [Url Launcher](https://pub.dev/packages/url_launcher)
 - [Expansion Tile](https://pub.dev/packages/configurable_expansion_tile_null_safety)
+- [Touch Ripple Effect](https://pub.dev/packages/touch_ripple_effect)
 
 ## Credit
 All image assets used in our application are taken from

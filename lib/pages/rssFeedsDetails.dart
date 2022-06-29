@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:pic_19/apiServices.dart';
 import 'package:pic_19/customColors.dart';
 import 'package:pic_19/customWidgets.dart';
+import 'package:touch_ripple_effect/touch_ripple_effect.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../dataClass.dart';
@@ -95,79 +96,93 @@ class _rssFeedsDetailsState extends State<rssFeedsDetails> {
                             child: ListView.builder(
                               itemCount: isiData.length,
                               itemBuilder: (BuildContext context, int index) {
-                                return GestureDetector(
-                                  onTap: () async {
-                                    final url = Uri.parse(isiData[index].clink);
-                                    await launchUrl(url);
-                                  },
-                                  child: Container(
-                                    margin: EdgeInsets.only(bottom: 20),
-                                    height: 200,
-                                    child: Stack(
-                                      children: [
-                                        Positioned.fill(
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            child: CachedNetworkImage(
-                                              imageUrl: isiData[index].cImage,
-                                              fit: BoxFit.cover,
-                                              placeholder: (context, url) =>
-                                                  Image.asset(
-                                                'assets/images/imageplaceholder.png',
-                                                fit: BoxFit.cover,
-                                              ),
-                                              errorWidget:
-                                                  (context, url, error) =>
-                                                      Icon(Icons.error),
-                                            ),
-                                          ),
-                                        ),
-                                        Positioned(
-                                          bottom: 0,
-                                          left: 0,
-                                          right: 0,
-                                          child: Container(
-                                            height: 190,
-                                            decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.only(
-                                                  bottomLeft:
-                                                      Radius.circular(10),
-                                                  bottomRight:
-                                                      Radius.circular(10)),
-                                              gradient: LinearGradient(
-                                                begin: Alignment.bottomCenter,
-                                                end: Alignment.topCenter,
-                                                colors: [
-                                                  primaryColor,
-                                                  primaryColor.withOpacity(0.8),
-                                                  Colors.transparent
-                                                ],
+                                return Column(
+                                  children: [
+                                    TouchRippleEffect(
+                                      borderRadius: BorderRadius.circular(10),
+                                      rippleColor: primaryColor,
+                                      onTap: () async {
+                                        final url =
+                                            Uri.parse(isiData[index].clink);
+                                        await launchUrl(url);
+                                      },
+                                      child: Container(
+                                        // margin: EdgeInsets.only(bottom: 20),
+                                        height: 200,
+                                        child: Stack(
+                                          children: [
+                                            Positioned.fill(
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                child: CachedNetworkImage(
+                                                  imageUrl:
+                                                      isiData[index].cImage,
+                                                  fit: BoxFit.cover,
+                                                  placeholder: (context, url) =>
+                                                      Image.asset(
+                                                    'assets/images/imageplaceholder.png',
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                  errorWidget:
+                                                      (context, url, error) =>
+                                                          Icon(Icons.error),
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        ),
-                                        Positioned(
-                                          bottom: 0,
-                                          child: Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width -
-                                                40,
-                                            padding: EdgeInsets.all(20),
-                                            child: Text(
-                                              isiData[index].cTitle,
-                                              style: GoogleFonts.poppins(
-                                                color: Colors.white,
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.bold,
+                                            Positioned(
+                                              bottom: 0,
+                                              left: 0,
+                                              right: 0,
+                                              child: Container(
+                                                height: 190,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                          bottomLeft:
+                                                              Radius.circular(
+                                                                  10),
+                                                          bottomRight:
+                                                              Radius.circular(
+                                                                  10)),
+                                                  gradient: LinearGradient(
+                                                    begin:
+                                                        Alignment.bottomCenter,
+                                                    end: Alignment.topCenter,
+                                                    colors: [
+                                                      primaryColor,
+                                                      primaryColor
+                                                          .withOpacity(0.8),
+                                                      Colors.transparent
+                                                    ],
+                                                  ),
+                                                ),
                                               ),
                                             ),
-                                          ),
+                                            Positioned(
+                                              bottom: 0,
+                                              child: Container(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width -
+                                                    40,
+                                                padding: EdgeInsets.all(20),
+                                                child: Text(
+                                                  isiData[index].cTitle,
+                                                  style: GoogleFonts.poppins(
+                                                    color: Colors.white,
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                      ],
+                                      ),
                                     ),
-                                  ),
+                                    SizedBox(height: 20)
+                                  ],
                                 );
                               },
                             ),

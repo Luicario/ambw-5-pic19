@@ -13,6 +13,7 @@ import 'package:pic_19/pages/settings.dart';
 import 'package:pic_19/pages/splashScreen.dart';
 import 'package:pic_19/pages/vaccination.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:touch_ripple_effect/touch_ripple_effect.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 void main() {
@@ -432,6 +433,7 @@ class _mainState extends State<mainApp> {
         scrollDirection: Axis.horizontal,
         // controller: _scrollController,
         itemCount: rssFeedsDataView.length,
+
         itemBuilder: (BuildContext context, int index) {
           return GestureDetector(
             onTap: () {
@@ -509,7 +511,9 @@ class _mainState extends State<mainApp> {
 
     return Column(
       children: [
-        GestureDetector(
+        TouchRippleEffect(
+          borderRadius: BorderRadius.circular(5),
+          rippleColor: primaryColor,
           onTap: () {
             Navigator.push(
               context,
@@ -577,7 +581,9 @@ class _mainState extends State<mainApp> {
             ],
           ),
         ),
-        GestureDetector(
+        TouchRippleEffect(
+          borderRadius: BorderRadius.circular(5),
+          rippleColor: primaryColor,
           onTap: () {
             Navigator.push(
               context,
