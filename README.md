@@ -87,7 +87,7 @@ Scaffold, text, navigator, Icon button, expanded, column, row, container, size b
 - [Expansion Tile](https://pub.dev/packages/configurable_expansion_tile_null_safety)
 - [Touch Ripple Effect](https://pub.dev/packages/touch_ripple_effect)
 - [Animated Flip Counter](https://pub.dev/packages/animated_flip_counter)
-
+- [Flutter Tutorial - How to Change App Icon and App Name | The Right Way [2021] Android & iOS](https://www.youtube.com/watch?v=eMHbgIgJyUQ)
 ## Credit
 All image assets used in our application are taken from
 - [StorySet](https://storyset.com/)

@@ -47,6 +47,7 @@ dependencies:
   badges: ^2.0.3
   touch_ripple_effect: ^2.2.3
   animated_flip_counter: ^0.2.4
+  flutter_launcher_icons: ^0.9.3
 
 dev_dependencies:
   flutter_test:
@@ -60,7 +61,11 @@ dev_dependencies:
   flutter_lints: ^1.0.0
 
 # For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
+# following page: https://d art.dev/tools/pub/pubspec
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/logo.png"
 
 # The following section is specific to Flutter.
 flutter:

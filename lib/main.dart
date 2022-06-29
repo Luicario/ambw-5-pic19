@@ -333,8 +333,10 @@ class _mainState extends State<mainApp> {
                                     covidSummary.cDeaths,
                                     Colors.grey.shade300,
                                     Colors.grey.shade700,
-                                    // "https://cdn-icons-png.flaticon.com/512/2552/2552797.png"
-                                    "https://cdn-icons-png.flaticon.com/512/983/983061.png"),
+                                    "https://cdn-icons-png.flaticon.com/512/2552/2552797.png"
+                                    // "https://cdn-icons-png.flaticon.com/512/983/983061.png"
+
+                                    ),
                               )
                             ],
                           ),
