@@ -93,6 +93,7 @@ class _mainState extends State<mainApp> {
     if (prefs.containsKey("dailyCaseLimit") &&
         prefs.getInt('dailyCaseLimit') != null) {
       int dailyCaselimit = (prefs.getInt('dailyCaseLimit') ?? 0) * 1000;
+      //untuk tampilan saja, soalnya yang tersimpan cmn bilangan nya saja klu ga ditnya ga ush
       if (value.cDailyCase > dailyCaselimit) {
         showDialog(
           context: context,
