@@ -114,6 +114,7 @@ All image assets used in our application are taken from
 - [Click Me](https://drive.google.com/file/d/1NyLnAzjFc4zbay1GFAUBDmhLMsH4PjZ4/view?usp=sharing)
 
 
+
 ## Pembagian Kerja Per Halaman (kurang lebih)
 - [Louis Margatan](https://github.com/Luicario) : settings, search, dan lokasi vaksinasi.
 - [Iverson Krysthio](https://github.com/iberso) : search hospitals dan hospital detail.

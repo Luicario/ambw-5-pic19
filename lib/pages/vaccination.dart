@@ -482,16 +482,19 @@ class _vaccinationState extends State<vaccination> {
                           Text("Vaccination Age :",
                               style: TextStyle(
                                   fontSize: 15, fontWeight: FontWeight.bold)),
-                          SizedBox(
-                            height: 50,
-                            child: ListView.builder(
-                              primary: false,
-                              itemCount: data.cVaccAge.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                return Text('- ${data.cVaccAge[index]}');
-                              },
-                            ),
+                          // SizedBox(
+                          //   height: 50,
+                          // child:
+                          ListView.builder(
+                            scrollDirection: Axis.vertical,
+                            shrinkWrap: true,
+                            primary: false,
+                            itemCount: data.cVaccAge.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Text('- ${data.cVaccAge[index]}');
+                            },
                           ),
+                          // ),
                           SizedBox(height: 10),
                           Text("Description :",
                               style: TextStyle(
