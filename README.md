@@ -7,10 +7,10 @@
 
 ## About
 Portal Informasi Covid, yang dimana aplikasi menampilkan :
-- Berita seputar kesehatan/covid19
-- Status covid di seluruh dunia
-- Fasilitas Vaksin di Indonesia
-- Jumlah ketersediaan ruang ICU/tempat tidur pasien covid di seluruh rumah sakit di Indonesia
+- Berita seputar kesehatan/covid19.
+- Summary Kasus covid di seluruh provinsi di Indonesia.
+- Fasilitas Vaksin di Indonesia.
+- Jumlah ketersediaan ruang ICU/tempat tidur pasien covid di seluruh rumah sakit di Indonesia.
 
 
 
