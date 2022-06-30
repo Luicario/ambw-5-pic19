@@ -31,20 +31,22 @@ class mainApp extends StatefulWidget {
 
 class _mainState extends State<mainApp> {
   late cCovidSummaryProvinsi covidSummary = cCovidSummaryProvinsi(
-      cNamaProvinsi: "INDONESIA",
-      cConfirmed: 0,
-      cRecovered: 0,
-      cDeaths: 0,
-      cLastUpdate: "0000-00-00",
-      cDailyCase: 0);
+    cNamaProvinsi: "INDONESIA",
+    cConfirmed: 0,
+    cRecovered: 0,
+    cDeaths: 0,
+    cLastUpdate: "0000-00-00",
+    cDailyCase: 0,
+  );
   late Future<List<cCovidSummaryProvinsi>> listCovidSummaryProvinsi;
   late cCovidSummaryProvinsi covidSummaryIndonesia = cCovidSummaryProvinsi(
-      cNamaProvinsi: "INDONESIA",
-      cConfirmed: 0,
-      cRecovered: 0,
-      cDeaths: 0,
-      cLastUpdate: "0000-00-00",
-      cDailyCase: 0);
+    cNamaProvinsi: "INDONESIA",
+    cConfirmed: 0,
+    cRecovered: 0,
+    cDeaths: 0,
+    cLastUpdate: "0000-00-00",
+    cDailyCase: 0,
+  );
 
   customWidgets customWidget = customWidgets();
   ApiService apiservice = ApiService();
@@ -70,21 +72,27 @@ class _mainState extends State<mainApp> {
 
   @override
   void initState() {
-    apiservice.getCovidSummaryIndonesia().then((value) => {
-          setState(() {
-            covidSummary = value;
-            isLoading = false;
-            isFirstLoading = false;
-            covidSummaryIndonesia = value;
-          }),
-          checkDailyCaseLimit(value),
-        });
+    apiservice.getCovidSummaryIndonesia().then(
+          (value) => {
+            setState(
+              () {
+                covidSummary = value;
+                isLoading = false;
+                isFirstLoading = false;
+                covidSummaryIndonesia = value;
+              },
+            ),
+            checkDailyCaseLimit(value),
+          },
+        );
 
     listCovidSummaryProvinsi = apiservice.getCovidSummaryProvinsi();
-    listCovidSummaryProvinsi.then((value) => {
-          value.sort((a, b) => a.cNamaProvinsi.compareTo(b.cNamaProvinsi)),
-          value.insert(0, covidSummaryIndonesia)
-        });
+    listCovidSummaryProvinsi.then(
+      (value) => {
+        value.sort((a, b) => a.cNamaProvinsi.compareTo(b.cNamaProvinsi)),
+        value.insert(0, covidSummaryIndonesia),
+      },
+    );
     super.initState();
   }
 

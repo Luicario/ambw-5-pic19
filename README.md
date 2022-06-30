@@ -117,7 +117,7 @@ All image assets used in our application are taken from
 ## Pembagian Kerja Per Halaman (kurang lebih)
 - [Louis Margatan](https://github.com/Luicario) : settings, search, dan lokasi vaksinasi.
 - [Iverson Krysthio](https://github.com/iberso) : search hospitals dan hospital detail.
-- [George Kim](https://github.com/ge0rgekim) : splash screen, home screen, and rss feed.
+- [George Kim](https://github.com/ge0rgekim) : splash screen, home screen, dan rss feed.
 
 ## **TODO LIST**
 
