@@ -128,7 +128,7 @@ No | Todo | PIC | Status
 3 | Rss Feed Page| George | ✅
 4 | Search Hospitals Page | Iverson | ✅
 5 | Hospital Details Page | Iverson | ✅
-6 | Design UI/UX| Iverson | ✅
+6 | Design UI/UX | Iverson | ✅
 7 | Unit Testing | Iverson | ✅
 8 | Search Vaccination Page| Louis | ✅
 9 | Settings Page| Louis | ✅
