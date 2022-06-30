@@ -109,12 +109,12 @@ All image assets used in our application are taken from
 - [How to change the default font family in Flutter](https://stackoverflow.com/questions/64237031/how-to-change-the-default-font-family-in-flutter)
 - [Flutter Tutorial - How to Change App Icon and App Name | The Right Way [2021] Android & iOS](https://www.youtube.com/watch?v=eMHbgIgJyUQ)
 
-## DEMO
+## Demo Video
 
 - [Click Me](https://drive.google.com/file/d/1NyLnAzjFc4zbay1GFAUBDmhLMsH4PjZ4/view?usp=sharing)
 
 
-## Pembagian Kerja Per Halaman
+## Pembagian Kerja Per Halaman (kurang lebih)
 - [Louis Margatan](https://github.com/Luicario) : settings, search, dan lokasi vaksinasi.
 - [Iverson Krysthio](https://github.com/iberso) : search hospitals dan hospital detail.
 - [George Kim](https://github.com/ge0rgekim) : splash screen, home screen, and rss feed.
@@ -122,14 +122,15 @@ All image assets used in our application are taken from
 ## **TODO LIST**
 
 No | Todo | PIC | Status
-| :--- | :---: | :---: | :--:
-1  | Splash Screen | George | ✅
-2  | Home Screen | George | ✅
-3 | Rss Feed | George | ✅
-4 | Search Hospitals | Iverson | ✅
-5 | Hospital Details | Iverson | ✅
-6 | Search Vaccination | Louis | ✅
-7 | Settings | Louis | ✅
+| :--- | :--- | :---: | :--:
+1  | Splash Screen Page | George | ✅
+2  | Home Screen Page| George | ✅
+3 | Rss Feed Page| George | ✅
+4 | Search Hospitals Page | Iverson | ✅
+5 | Hospital Details Page | Iverson | ✅
+6 | Unit Testing | Iverson | ✅
+7 | Search Vaccination Page| Louis | ✅
+8 | Settings Page| Louis | ✅
 
 **Status Icon**
 No | Status | Icon |
