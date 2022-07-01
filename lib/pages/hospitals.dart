@@ -59,6 +59,7 @@ class _hospitalsState extends State<hospitals> {
     setState(() {
       valueKabKota = ListKabKota[index].cNama;
       ListRS = apiservice.getAllRumahSakit(idProvinsi, value!);
+
       isLoading = true;
       isFound = true;
     });
@@ -72,6 +73,7 @@ class _hospitalsState extends State<hospitals> {
           } else {
             isFound = true;
             jumlahRS = value.length;
+            value!.sort((a, b) => b.cBedIgd.compareTo(a.cBedIgd));
           }
           kabSearch = ListKabKota[index].cNama + ", ";
         },
@@ -185,6 +187,8 @@ class _hospitalsState extends State<hospitals> {
                                         ListRS.then(
                                           (value) => setState(
                                             () {
+                                              value!.sort((a, b) => b.cBedIgd
+                                                  .compareTo(a.cBedIgd));
                                               isLoading = false;
                                               jumlahRS = value!.length;
                                             },
